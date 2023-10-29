@@ -1,0 +1,4 @@
+{"level":"INFO","ts":"2023-10-30 01:22:42","caller":"logger/logger_test.go:21","msg":"Here is test: D:\\goland_project\\blog\\pkg\\logger"}
+{"level":"INFO","ts":"2023-10-30 01:23:15","caller":"logger/logger_test.go:21","msg":"Here is test: D:\\goland_project\\blog\\pkg\\logger"}
+{"level":"INFO","ts":"2023-10-30 01:24:26","caller":"logger/logger_test.go:21","msg":"Here is test: D:\\goland_project\\blog\\pkg\\logger"}
+{"level":"INFO","ts":"2023-10-30 01:24:38","caller":"logger/logger_test.go:21","msg":"Here is test: D:\\goland_project\\blog\\pkg\\logger"}
