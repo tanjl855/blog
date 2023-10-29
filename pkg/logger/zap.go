@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// GetInitLogger 简单初始化日志系统，后续优化可带上filePath
 func GetInitLogger(infoFileName, warnFileName string) *zap.SugaredLogger {
 	encoder := getEncoder()
 	// 两个判断日志等级的interface

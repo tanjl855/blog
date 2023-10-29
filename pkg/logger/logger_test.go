@@ -8,7 +8,7 @@ import (
 
 func TestSetupLogger(t *testing.T) {
 	// windows test
-	viper.SetConfigFile("../.././configs/config.yaml")
+	viper.SetConfigFile("../.././configs/log.yaml")
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(err)
