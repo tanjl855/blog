@@ -1,33 +1,34 @@
 package logger
 
 import (
-	"fmt"
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"github.com/spf13/viper"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"io"
 	"time"
 )
 
-var (
-	ErrorLogger *zap.Logger
-	InfoLogger  *zap.Logger
-)
-
-func InitZapLogger() {
-	logPath := viper.GetString("log_path")
-	hostName := viper.GetString("host_name")
-	ErrorLogger = getNewZap(fmt.Sprintf("%s/%s/%s_%s", logPath, "error", hostName, "error"))
-	InfoLogger = getNewZap(fmt.Sprintf("%s/%s/%s_%s", logPath, "info", hostName, "info"))
-}
-
-func getNewZap(fileName string) *zap.Logger {
-	writeSyncer := getLogWriter(fileName)
+func GetInitLogger(infoFileName, warnFileName string) *zap.SugaredLogger {
 	encoder := getEncoder()
-	core := zapcore.NewCore(encoder, writeSyncer, zapcore.InfoLevel)
+	// 两个判断日志等级的interface
+	// warn level以下属于info
+	infoLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+		return lvl < zapcore.WarnLevel
+	})
+	// warn level及以上属于warn
+	warnLevel := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+		return lvl >= zapcore.WarnLevel
+	})
 
-	return zap.New(core, zap.AddCaller())
+	infoWriter := getLogWriter(infoFileName)
+	warnWriter := getLogWriter(warnFileName)
+	// 创建具体的Logger
+	core := zapcore.NewTee(
+		zapcore.NewCore(encoder, infoWriter, infoLevel),
+		zapcore.NewCore(encoder, warnWriter, warnLevel),
+	)
+	loggers := zap.New(core, zap.AddCaller())
+	return loggers.Sugar()
 }
 
 func getEncoder() zapcore.Encoder {
