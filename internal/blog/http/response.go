@@ -17,7 +17,7 @@ const (
 	BackendNotLogin = 419
 )
 
-var responseMessages = map[int]string{
+var ResponseMessages = map[int]string{
 	Success:             "成功",
 	Failed:              "失败",
 	Exception:           "异常",
@@ -58,7 +58,7 @@ func ShowError(c *gin.Context, message string) {
 }
 
 func ShowErrorCode(c *gin.Context, code int) {
-	rsp := gin.H{"err_code": code, "message": responseMessages[code]}
+	rsp := gin.H{"err_code": code, "message": ResponseMessages[code]}
 	c.JSON(http.StatusOK, rsp)
 	c.Abort()
 	return

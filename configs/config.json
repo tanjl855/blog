@@ -1,0 +1,27 @@
+{
+  "env": "sandbox",
+  "log_path": "/data/logs/blog",
+  "host_name": "sandbox",
+  "server_port": 2023,
+  "mysql" : {
+    "blog": {
+      "host" : "localhost",
+      "username": "root",
+      "password" : "root",
+      "database": "blog",
+      "charset": "utf8mb4",
+      "collation": "utf8mb4_general_ci",
+      "port": "3306"
+    }
+  },
+  "redis": {
+    "blog" : {
+      "host": "127.0.0.1",
+      "port": "6379",
+      "password": null,
+      "db": "4"
+    }
+  },
+  "info_file_name": "info_file",
+  "warn_file_name": "warn_file"
+}

@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
+	"github.com/tanjl855/blog/pkg/utils"
 )
 
 func InitConfig() bool {
-	viper.SetConfigFile("../../configs/log.json")
+	//viper.SetConfigFile("configs/config")
 	viper.SetConfigType("json")
-	//viper.AddConfigPath("../../configs/")
+	viper.AddConfigPath(utils.ConfigFilePath)
 	err := viper.ReadInConfig()
 	if err != nil {
 		panic(err.Error())

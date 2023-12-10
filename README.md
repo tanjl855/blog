@@ -1,2 +1,2 @@
 # blog
-gin, gorm, mysql, redis, web_blog
+简易基于分布式系统的博客系统

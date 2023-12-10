@@ -72,5 +72,5 @@ func getConnection(dataBase string) (*gorm.DB, *sql.DB) {
 }
 
 func InitMysql() {
-	BlogDB, BlogSqlDB = getConnection("tan_blog")
+	BlogDB, BlogSqlDB = getConnection("blog")
 }
