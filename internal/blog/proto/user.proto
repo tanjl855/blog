@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package="./;proto";
+package proto;
+
+message User {
+    string username = 1;
+    int32 age = 2;
+    string email =3;
+}
+
+message ErrRsp {
+    int32 errCode = 1;
+    string errMsg = 2;
+}
+
+service UserService {
+    rpc UserTest(User) returns(ErrRsp);
+}
